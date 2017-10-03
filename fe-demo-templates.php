@@ -56,10 +56,11 @@ function fe_tf() {
 
 add_action( 'wp_enqueue_scripts', 'fe_demo_template_enqueue_js' );
 function fe_demo_template_enqueue_js() {
-	wp_enqueue_script( 'raptorize', plugins_url( '/assets/js/jquery.raptorize.1.0-salcode.js', __FILE__ ), array('jquery'), '1.0-salcode', true );
+	wp_enqueue_script( 'raptorize', plugins_url( '/assets/js/jquery.raptorize.1.0-salcode.js', __FILE__ ), array('jquery'), '1.0-salcode.1', true );
+
 	wp_localize_script( 'raptorize', 'feDemoTemplateRaptor', array(
 		'assetPath' => plugins_url( '/assets/', __FILE__ ),
 	) );
 
-	wp_enqueue_script( 'fe_demo_template', plugins_url( '/assets/js/app.js', __FILE__ ), array('jquery'), '0.1.1', true );
+	wp_enqueue_script( 'fe_demo_template', plugins_url( '/assets/js/app.js', __FILE__ ), array('jquery'), '0.2.0', true );
 }
