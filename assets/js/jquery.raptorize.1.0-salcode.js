@@ -1,5 +1,5 @@
 /*
- * jQuery Raptorize Plugin 1.0-salcode
+ * jQuery Raptorize Plugin 1.0-salcode.1
  * www.ZURB.com/playground
  * Copyright 2010, ZURB
  * Free to use under the MIT license.
@@ -15,6 +15,7 @@
         var defaults = {  
             enterOn: 'click', //timer, konami-code, click
             delayTime: 5000, //time before raptor attacks on timer mode
+            enableSound: true,
             assetPath: ''
         };
 
@@ -26,7 +27,7 @@
 			var _this = $(this);
 			var audioSupported = false;
 			//Stupid Browser Checking which should be in jQuery Support
-			if ($.browser.mozilla && $.browser.version.substr(0, 5) >= "1.9.2" || $.browser.webkit) { 
+			if (options.enableSound && $.browser.mozilla && $.browser.version.substr(0, 5) >= "1.9.2" || (options.enableSound && $.browser.webkit) ) {
 				audioSupported = true;
 			}
 			
