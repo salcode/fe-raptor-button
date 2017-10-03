@@ -62,5 +62,5 @@ function fe_demo_template_enqueue_js() {
 		'assetPath' => plugins_url( '/assets/', __FILE__ ),
 	) );
 
-	wp_enqueue_script( 'fe_demo_template', plugins_url( '/assets/js/app.js', __FILE__ ), array('jquery'), '0.2.0', true );
+	wp_enqueue_script( 'fe_demo_template', plugins_url( '/assets/js/app.js', __FILE__ ), array( 'raptorize' ), '0.2.0', true );
 }
