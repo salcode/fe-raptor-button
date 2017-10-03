@@ -1,5 +1,5 @@
 /*
- * jQuery Raptorize Plugin 1.0
+ * jQuery Raptorize Plugin 1.0-salcode
  * www.ZURB.com/playground
  * Copyright 2010, ZURB
  * Free to use under the MIT license.
@@ -14,9 +14,10 @@
         //Yo' defaults
         var defaults = {  
             enterOn: 'click', //timer, konami-code, click
-            delayTime: 5000 //time before raptor attacks on timer mode
-            };  
-        
+            delayTime: 5000, //time before raptor attacks on timer mode
+            assetPath: ''
+        };
+
         //Extend those options
         var options = $.extend(defaults, options); 
 	
@@ -30,8 +31,8 @@
 			}
 			
 			//Raptor Vars
-			var raptorImageMarkup = '<img id="elRaptor" style="display: none" src="raptor.png" />'
-			var raptorAudioMarkup = '<audio id="elRaptorShriek" preload="auto"><source src="raptor-sound.mp3" /><source src="raptor-sound.ogg" /></audio>';	
+			var raptorImageMarkup = '<img id="elRaptor" style="display: none" src="' + options.assetPath + 'images/raptor.png" />'
+			var raptorAudioMarkup = '<audio id="elRaptorShriek" preload="auto"><source src="' + options.assetPath + 'audio/raptor-sound.mp3" /><source src="' + options.assetPath + 'audio/raptor-sound.ogg" /></audio>';
 			var locked = false;
 			
 			//Append Raptor and Style

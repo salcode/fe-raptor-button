@@ -56,7 +56,7 @@ function fe_tf() {
 
 add_action( 'wp_enqueue_scripts', 'fe_demo_template_enqueue_js' );
 function fe_demo_template_enqueue_js() {
-	wp_enqueue_script( 'raptorize', plugins_url( '/assets/js/jquery.raptorize.1.0.js', __FILE__ ), array('jquery'), '1.0', true );
+	wp_enqueue_script( 'raptorize', plugins_url( '/assets/js/jquery.raptorize.1.0-salcode.js', __FILE__ ), array('jquery'), '1.0-salcode', true );
 	wp_localize_script( 'raptorize', 'feDemoTemplateRaptor', array(
 		'assetPath' => plugins_url( '/assets/', __FILE__ ),
 	) );
