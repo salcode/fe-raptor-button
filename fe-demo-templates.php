@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: Iron Code Studio Demo Templates
- * Plugin URI: https://github.com/salcode/fe-demo-templates
- * Description: Demo plugin to demonstrate how to create templates in a plugin that can be overridden by the theme. This will add a button to the bottom of each post.
+ * Plugin Name: Raptor Button
+ * Plugin URI: https://github.com/salcode/fe-raptor-button
+ * Description: Add a Raptor to your website. This plugin provides examples used in my <a href="https://2017.baltimore.wordcamp.org/session/making-your-code-easy-to-extend/">Making Your Code Easy To Extend</a> talk at WordCamp Baltimore 2017. This plugin will add a button to the bottom of each page and clicking the button will bring out the raptor.
  * Version: 1.0.0
  * Author: Sal Ferrarello
  * Author URI: http://salferrarello.com/
@@ -25,8 +25,8 @@ add_action( 'wp_footer', 'fe_tf' );
  * Output the markup for the Fe Demo Templates plugin in the footer.
  */
 function fe_tf() {
-	$text = __( 'Click Me', 'fe-demo-templates' );
-	$text = apply_filters( 'fe_raptorize_button_text', $text );
+	$btn_txt = __( 'Bring out the Raptor', 'fe-demo-templates' );
+	$btn_txt = apply_filters( 'fe_raptorize_button_text', $btn_txt );
 
 	// This is a list of possible templates, from most to least specific.
 	$templates = array(
@@ -57,11 +57,11 @@ function fe_tf() {
 
 add_action( 'wp_enqueue_scripts', 'fe_demo_template_enqueue_js' );
 function fe_demo_template_enqueue_js() {
-	wp_enqueue_script( 'raptorize', plugins_url( '/assets/js/jquery.raptorize.1.0-salcode.js', __FILE__ ), array( 'jquery' ), '1.0-salcode.1', true );
-
+	wp_register_script( 'raptorize', plugins_url( '/assets/js/jquery.raptorize.1.0-salcode.js', __FILE__ ), array( 'jquery' ), '1.0-salcode.1', true );
 	wp_localize_script( 'raptorize', 'feDemoTemplateRaptor', array(
 		'assetPath' => plugins_url( '/assets/', __FILE__ ),
 	) );
+	wp_register_script( 'fe_demo_template', plugins_url( '/assets/js/app.js', __FILE__ ), array( 'raptorize' ), '0.2.0', true );
 
-	wp_enqueue_script( 'fe_demo_template', plugins_url( '/assets/js/app.js', __FILE__ ), array( 'raptorize' ), '0.2.0', true );
+	wp_enqueue_script( 'fe_demo_template' );
 }
