@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
 
-    $('button').raptorize({
+    $('[data-fe-tf="trigger"]').raptorize({
         'assetPath': feDemoTemplateRaptor.assetPath,
     });
 
