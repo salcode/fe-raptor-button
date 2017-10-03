@@ -26,6 +26,7 @@ add_action( 'wp_footer', 'fe_tf' );
  */
 function fe_tf() {
 	$text = __( 'Click Me', 'fe-demo-templates' );
+	$text = apply_filters( 'fe_raptorize_button_text', $text );
 
 	// This is a list of possible templates, from most to least specific.
 	$templates = array(
