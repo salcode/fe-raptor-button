@@ -8,10 +8,10 @@
  * Author URI: http://salferrarello.com/
  * License: Apache-2.0
  * License URI: https://spdx.org/licenses/Apache-2.0.html
- * Text Domain: fe-demo-templates
+ * Text Domain: fe-raptor-button
  * Domain Path: /languages
  *
- * @package fe-demo-templates
+ * @package fe-raptor-button
  */
 
 // If this file is called directly, abort.
@@ -19,49 +19,71 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-add_action( 'wp_footer', 'fe_tf' );
+// Display button in the footer.
+add_action( 'wp_footer', 'fe_raptor' );
+
+// Enqueue JavaScript.
+add_action( 'wp_enqueue_scripts', 'fe_raptor_js_enqueue' );
 
 /**
- * Output the markup for the Fe Demo Templates plugin in the footer.
+ * Output the markup for the Raptor Button.
  */
-function fe_tf() {
-	$btn_txt = __( 'Bring out the Raptor', 'fe-demo-templates' );
-	$btn_txt = apply_filters( 'fe_raptorize_button_text', $btn_txt );
+function fe_raptor() {
+	$btn_txt = __( 'Get Raptor', 'fe-raptor-button' );
 
-	// This is a list of possible templates, from most to least specific.
+	// Allow changing the button text with the filter 'fe_raptor_btn_txt'.
+	$btn_txt = apply_filters( 'fe_raptor_btn_txt', $btn_txt );
+
+	// This is a list of possible templates, in decreasing order of preference.
 	$templates = array(
 		// Check for a template in the theme with the Post ID.
-		// e.g. themes/mytheme/fe-demo-templates/foot-13.php, where 13 is the post ID.
+		// e.g. themes/mytheme/fe-raptor-button/foot-13.php, where 13 is the post ID.
 		sprintf(
-			get_stylesheet_directory() . '/fe-demo-templates/foot-%s.php',
+			get_stylesheet_directory() . '/fe-raptor-button/foot-%s.php',
 			get_the_ID()
 		),
+
 		// Check for a generic template in the theme.
-		// e.g. themes/mytheme/fe-demo-templates/foot.php.
-		get_stylesheet_directory() . '/fe-demo-templates/foot.php',
+		// e.g. themes/mytheme/fe-raptor-button/foot.php.
+		get_stylesheet_directory() . '/fe-raptor-button/foot.php',
+
 		// This is the path to the default template that is part of the plugin.
 		__DIR__ . '/templates/foot.php',
 	);
-	// Allow the template list to be modified via the `fe_demo_templates-template_list` filter.
-	$templates = apply_filters( 'fe_demo_templates-template_list', $templates );
+
 	// Loop through each of the templates.
 	foreach ( $templates as $tmpl ) {
+
+		// Find the first template that exists.
 		if ( file_exists( $tmpl ) ) {
-			// If the template exists, display it.
+
+			// Display the template.
 			include $tmpl;
+
 			// Break out of the foreach loop.
 			break;
+
 		}
 	}
 }
 
-add_action( 'wp_enqueue_scripts', 'fe_demo_template_enqueue_js' );
-function fe_demo_template_enqueue_js() {
-	wp_register_script( 'raptorize', plugins_url( '/assets/js/jquery.raptorize.1.0-salcode.js', __FILE__ ), array( 'jquery' ), '1.0-salcode.1', true );
-	wp_localize_script( 'raptorize', 'feDemoTemplateRaptor', array(
-		'assetPath' => plugins_url( '/assets/', __FILE__ ),
-	) );
-	wp_register_script( 'fe_demo_template', plugins_url( '/assets/js/app.js', __FILE__ ), array( 'raptorize' ), '0.2.0', true );
+/**
+ * Register and enqueue plugin JavaScript.
+ */
+function fe_raptor_js_enqueue() {
 
-	wp_enqueue_script( 'fe_demo_template' );
+	// Configuration for jQuery plugin raptorize.
+	$js_config = array(
+		'assetPath'   => plugins_url( '/assets/', __FILE__ ),
+		'enableSound' => false,
+	);
+
+	// Allow changing this configuration via the filter 'fe_raptor_plugin_config'.
+	$js_config = apply_filters( 'fe_raptor_plugin_config', $js_config );
+
+	wp_register_script( 'raptorize', plugins_url( '/assets/js/jquery.raptorize.1.0-salcode.js', __FILE__ ), array( 'jquery' ), '1.0-salcode.1', false );
+	wp_register_script( 'fe-raptor-button', plugins_url( '/assets/js/app.js', __FILE__ ), array( 'raptorize' ), '0.2.1', false );
+	wp_localize_script( 'fe-raptor-button', 'feRaptorConfig', $js_config );
+
+	wp_enqueue_script( 'fe-raptor-button' );
 }
