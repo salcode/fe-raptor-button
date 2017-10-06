@@ -8,9 +8,9 @@ For brevity I'm using anonymous functions in my examples, which means this code 
 
 ## Ways to Extend This Plugin
 
-### Button Text
+### Button Text Filter
 
-By default, the button text is `Get Raptor`.  This can be modified using the `fe_raptor_btn_txt` filter.
+By default, the button text is "Get Raptor".  This can be modified using the `fe_raptor_btn_txt` filter.
 
 The following code can be added to your theme's `functions.php`, a custom plugin, or a file in the `mu-plugins` directory.
 
