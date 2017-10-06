@@ -36,37 +36,13 @@ function fe_raptor() {
 
 	do_action( 'before_raptor_btn_template' );
 
-	// This is a list of possible templates, in decreasing order of preference.
-	$templates = array(
-		// Check for a template in the theme with the Post ID.
-		// e.g. themes/mytheme/fe-raptor-button/btn-13.php, where 13 is the post ID.
-		sprintf(
-			get_stylesheet_directory() . '/fe-raptor-button/btn-%s.php',
-			get_the_ID()
-		),
-
-		// Check for a generic template in the theme.
-		// e.g. themes/mytheme/fe-raptor-button/btn.php.
-		get_stylesheet_directory() . '/fe-raptor-button/btn.php',
-
-		// This is the path to the default template that is part of the plugin.
-		__DIR__ . '/templates/btn.php',
-	);
-
-	// Loop through each of the templates.
-	foreach ( $templates as $tmpl ) {
-
-		// Find the first template that exists.
-		if ( file_exists( $tmpl ) ) {
-
-			// Display the template.
-			include $tmpl;
-
-			// Break out of the foreach loop.
-			break;
-
-		}
+	$tmpl = get_stylesheet_directory() . '/fe-raptor-button/btn.php';
+	if ( ! file_exists( $tmpl ) ) {
+		// Fallback to default template.
+		$tmpl = __DIR__ . '/templates/btn.php';
 	}
+	// Display the template.
+	include $tmpl;
 }
 
 /**

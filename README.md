@@ -70,10 +70,6 @@ This template can be overriden by placing a template in the active theme at `fe-
 
 A good way to get started is to copy `templates/btn.php` from this plugin and put it in you theme.  Then you can modify the template in your theme.
 
-#### Override Template on a Specific Post
-
-You can also create a custom template that is only applied on a certain post by adding a dash and post id to the template name (e.g. the template `fe-raptor-button/btn-13.php` will only used when the post id is `13`), otherwise the general override template, followed by the built-in plugin template will be used in order of preference.
-
 ## Credits
 
 - [Zurb](https://zurb.com/) Team's jQuery Plugin [Raptorize](https://zurb.com/playground/jquery-raptorize)
