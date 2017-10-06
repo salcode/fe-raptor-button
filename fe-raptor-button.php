@@ -34,6 +34,8 @@ function fe_raptor() {
 	// Allow changing the button text with the filter 'fe_raptor_btn_txt'.
 	$btn_txt = apply_filters( 'fe_raptor_btn_txt', $btn_txt );
 
+	do_action( 'before_raptor_btn_template' );
+
 	// This is a list of possible templates, in decreasing order of preference.
 	$templates = array(
 		// Check for a template in the theme with the Post ID.
