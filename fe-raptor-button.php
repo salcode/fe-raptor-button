@@ -34,7 +34,7 @@ function fe_raptor() {
 	// Allow changing the button text with the filter 'fe_raptor_btn_txt'.
 	$btn_txt = apply_filters( 'fe_raptor_btn_txt', $btn_txt );
 
-	do_action( 'before_raptor_btn_template' );
+	do_action( 'fe_before_raptor_btn_template' );
 
 	$tmpl = get_stylesheet_directory() . '/fe-raptor-button/btn.php';
 	if ( ! file_exists( $tmpl ) ) {

@@ -34,20 +34,19 @@ add_filter( 'fe_raptor_plugin_config', function( $js_config ) {
 });
 ```
 
-### Action before_raptor_btn_template
+### Action fe_before_raptor_btn_template
 
 There is an action directly before the button is displayed.  We can use this to add our own content before the button.
 
 The following code can be added to your theme's `functions.php`, a custom plugin, or a file in the `mu-plugins` directory.
 
 ```
-add_action( 'before_raptor_btn_template', function() {
+add_action( 'fe_before_raptor_btn_template', function() {
 ?>
-    <div class="container">
-        <blockquote>
-            <p class="bg-danger">If you are frightened by carnivorous dinosaurs, you may not want to click this button.</p>
-        </blockquote>
-    </div><!-- .container -->
+<div class="alert alert-danger alert-dismissible" role="alert" style="margin: 10px;">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>Warning!</strong> Clicking this button could be scary.
+</div>
 <?php
 });
 ```
