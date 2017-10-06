@@ -20,6 +20,20 @@ add_filter( 'fe_raptor_btn_txt', function( $btn_txt ) {
 });
 ```
 
+### jQuery Plugin Configuration
+
+The configuration for the jQuery plugin Raptorize is created in PHP and passed through the filter `fe_raptor_plugin_config`. We can use this to modify the settings for the jQuery Raptorize plugin.
+
+The following code can be added to your theme's `functions.php`, a custom plugin, or a file in the `mu-plugins` directory.
+
+```
+// Enable sound for the raptorize plugin.
+add_filter( 'fe_raptor_plugin_config', function( $js_config ) {
+	$js_config['enableSound'] = true;
+	return $js_config;
+});
+```
+
 ### Action before_raptor_btn_template
 
 There is an action directly before the button is displayed.  We can use this to add our own content before the button.
