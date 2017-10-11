@@ -65,3 +65,10 @@ function fe_raptor_js_enqueue() {
 
 	wp_enqueue_script( 'fe-raptor-button' );
 }
+
+/**
+ * Load translations if they are available.
+ */
+add_action('plugins_loaded', function() {
+	load_plugin_textdomain( 'fe-raptor-button', false, __DIR__ );
+});
