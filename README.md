@@ -2,7 +2,7 @@
 
 This plugin adds a button to your website that when clicked triggers the appearance of a Raptor using the jQuery plugin [Raptorize](https://zurb.com/playground/jquery-raptorize).
 
-This plugin is extensible in a number of ways.
+This plugin is extensible in a number of ways as discussed in my blog post [Make Your WordPress Plugin Easy to Extend](https://salferrarello.com/extend-plugin).
 
 For brevity I'm using anonymous functions in my examples, which means this code requires a minimum PHP version of `5.3`.
 
