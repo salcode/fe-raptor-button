@@ -53,27 +53,20 @@ add_action( 'fe_before_raptor_btn_template', function() {
 
 ### Modify action for button
 
-By default, the `fe_raptor()` function is attached to the `wp_footer` action.  We can change this.  The hooks available for display are going to depending on the theme you're using.  I'm a big fan of the [Genesis theme](), which provides the hook `genesis_before_loop`.
+By default, the `fe_raptor()` function is attached to the `wp_footer` action.  We can change this.  The hooks available for display are going to depending on the theme you're using.  I'm a big fan of the [Genesis theme](https://salferrarello.com/why-use-genesis-framework/), which provides the hook `genesis_before_loop`.
 
 I can move the button to this hook with the following code in the theme's `functions.php` file.
 
 ```
-remove_action( 'wp_footer', 'fe_raptor' );
-add_action( 'genesis_before_loop', 'fe_raptor' );
-```
-
-__Modification if the code appears in a plugin or mu-plugin__
-
-In the case of a plugin or an mu-plugin, we can run into the problem of trying to modify the hook where `fe_raptor()` is called __before__ the plugin sets `fe_raptor()` to it's original hook (`wp_footer`).
-
-In this case, we delay our code to make certain the Raptor Button plugin has fully loaded, before we try to change anything.
-
-```
-add_action( 'plugins_loaded', function() {
-    remove_action( 'wp_footer', 'fe_raptor' );
-    add_action( 'genesis_before_loop', 'fe_raptor' );
+add_action( 'genesis_before', function() {
+	remove_action( 'wp_footer', 'fe_raptor' );
+	add_action( 'genesis_before_loop', 'fe_raptor' );
 });
 ```
+
+#### Using the `genesis_before` hook
+
+I'm not removing `fe_raptor()` from `wp_footer` immediately because it is possible our code may run before this action is added (e.g. if our code is in `mu-plugins`, it will execute before our plugin).
 
 ### Override Templates
 
