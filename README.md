@@ -38,6 +38,8 @@ add_filter( 'fe_raptor_plugin_config', function( $js_config ) {
 
 There is an action directly before the button is displayed.  We can use this to add our own content before the button.
 
+This code uses Bootstrap Markup to create a dismissable alert before the button.
+
 The following code can be added to your theme's `functions.php`, a custom plugin, or a file in the `mu-plugins` directory.
 
 ```
