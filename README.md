@@ -76,6 +76,21 @@ This template can be overriden by placing a template in the active theme at `fe-
 
 A good way to get started is to copy `templates/btn.php` from this plugin and put it in you theme.  Then you can modify the template in your theme.
 
+#### Example
+
+For example, I'm using a Bootstrap based theme so my custom template in my theme might look like the following, which gives me a nicely styled Bootstrap button.
+
+```
+<p class="text-center">
+    <button data-fe-raptor="trigger"
+        class="btn btn-danger btn-large">
+
+    <?php echo esc_html( $btn_txt ); ?>
+
+    </button>
+</p>
+```
+
 ## Credits
 
 - [Zurb](https://zurb.com/) Team's jQuery Plugin [Raptorize](https://zurb.com/playground/jquery-raptorize)
