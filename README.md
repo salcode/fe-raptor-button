@@ -46,7 +46,9 @@ The following code can be added to your theme's `functions.php`, a custom plugin
 add_action( 'fe_before_raptor_btn_template', function() {
 ?>
 <div class="alert alert-danger alert-dismissible" role="alert" style="margin: 10px;">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
     <strong>Warning!</strong> Clicking this button could be scary.
 </div>
 <?php
